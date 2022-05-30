@@ -2,10 +2,15 @@ var MyModules = (function Manager() {
     var modules = {};
 
     function define(name, deps, impl) {
+        console.log('name : ' + name);
+        console.log('deps : ' + deps);
+        console.log('impl : ' + impl);
+        
         for(var i=0; i<deps.length; i++) {
             deps[i] = modules[deps[i]];
         }
         modules[name] = impl.apply( impl, deps );
+        console.log('-----------');
     }
     function get(name) {
         return modules[name];
